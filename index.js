@@ -14,6 +14,7 @@ app.use(cors());
 
 // Variables d'environnement
 const secretKey = process.env.API_KEY;
+const numPort = process.env.PORT;
 
 // --------------MODEL BASE DE DONNES --------------------
 
@@ -260,6 +261,6 @@ app.all("*", (req, res) => {
 });
 
 // SERVER LISTEN
-app.listen(3000, () => {
+app.listen(numPort, () => {
   console.log("Server has started🔥🔥🔥🔥");
 });
