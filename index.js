@@ -105,7 +105,7 @@ app.get("/marvel/comics/:characterId", async (req, res) => {
   }
 });
 
-// RECUPERER UN PERSONNAGE EN PARTICULIER
+// RECUPERER UN COMICS EN PARTICULIER
 
 app.get("/marvel/comic/:comicId", async (req, res) => {
   try {
