@@ -15,10 +15,11 @@ app.use(cors());
 // Variables d'environnement
 const secretKey = process.env.API_KEY;
 const PORT = process.env.PORT || 3000;
+const MONGODB = process.env.MONGODB;
 
 // --------------MODEL BASE DE DONNES --------------------
 
-mongoose.connect("mongodb://localhost:27017/marvel");
+mongoose.connect(MONGODB);
 
 const User = mongoose.model("User", {
   email: String,
