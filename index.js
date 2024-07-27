@@ -39,7 +39,7 @@ const Like = mongoose.model("Like", {
 
 // WELCOME
 app.get("/", (req, res) => {
-  res.json({ message: "Hi" });
+  res.json({ message: "Hello world" });
 });
 
 // RECUPERER TOUT LES PERSONNAGES
