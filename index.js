@@ -35,7 +35,7 @@ const Like = mongoose.model("Like", {
   token: String,
 });
 
-// --------------ROUTES--------------------
+// --------------ROUTES-------------------
 
 // WELCOME
 app.get("/", (req, res) => {
