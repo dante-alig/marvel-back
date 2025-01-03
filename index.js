@@ -197,11 +197,11 @@ app.post("/marvel/likes", async (req, res) => {
   try {
     const { name, image, link, token } = req.body;
 
-    // Vérifie si un like avec le nom donné existe déjà
-    const existingLike = await Like.findOne({ image: image });
+    // Vérifie si un like avec la même image et le même token existe déjà
+    const existingLike = await Like.findOne({ image: image, token: token });
 
     if (existingLike) {
-      return res.status(400).json({ message: "Ce nom a déjà été liké." });
+      return res.status(400).json({ message: "Vous avez déjà liké cette image." });
     }
 
     // Crée une nouvelle entrée de like
@@ -209,16 +209,24 @@ app.post("/marvel/likes", async (req, res) => {
       name: name,
       image: image,
       link: link,
-      token: token,
+      token: token
     });
 
-    const savedLike = await newLike.save();
-    return res.status(200).json(savedLike);
-  } catch (err) {
-    res.status(500).send({
-      message: "Erreur lors de l'enregistrement des données",
-      error: err,
-    });
+    await newLike.save();
+    res.status(201).json(newLike);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// AFFICHES LES FAVORIES (test)
+
+app.get("/likes/all", async (req, res) => {
+  try {
+    const likes = await Like.find();
+    return res.status(200).json(likes);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 });
 
